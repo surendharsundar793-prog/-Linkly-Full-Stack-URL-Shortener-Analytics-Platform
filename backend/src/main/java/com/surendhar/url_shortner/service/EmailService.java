@@ -1,6 +1,7 @@
 package com.surendhar.url_shortner.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -14,10 +15,13 @@ public class EmailService {
 	@Autowired(required = false)
 	private JavaMailSender mailSender;
 
+	@Value("${app.frontend.url:http://localhost:5173}")
+	private String frontendUrl;
+
 	public void sendPasswordResetEmail(String toEmail, String resetToken) {
 		if (mailSender == null) {
 			System.out.println("⚠️ [WARN] JavaMailSender is not configured (mail settings missing in application.properties). Cannot send real email to: " + toEmail);
-			System.out.println("🔗 [MOCK LINK] Reset Link: http://localhost:5173/reset-password?token=" + resetToken);
+			System.out.println("🔗 [MOCK LINK] Reset Link: " + frontendUrl + "/reset-password?token=" + resetToken);
 			return;
 		}
 
@@ -28,7 +32,7 @@ public class EmailService {
 			helper.setTo(toEmail);
 			helper.setSubject("🔒 Reset Your Linkly Password");
 
-			String resetUrl = "http://localhost:5173/reset-password?token=" + resetToken;
+			String resetUrl = frontendUrl + "/reset-password?token=" + resetToken;
 
 			String htmlContent = "<div style=\"font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 520px; margin: 0 auto; padding: 30px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #ffffff;\">"
 					+ "<div style=\"text-align: center; margin-bottom: 24px;\">"
