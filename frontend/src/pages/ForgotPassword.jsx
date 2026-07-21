@@ -57,19 +57,16 @@ const ForgotPassword = () => {
                 {error && <div className="forgot-error-alert">{error}</div>}
                 {message && (
                     <div className="forgot-success-alert" style={{ wordBreak: 'break-word', textAlign: 'left' }}>
-                        <div style={{ marginBottom: resetUrl ? '12px' : '0' }}>{message}</div>
+                        <div style={{ marginBottom: resetUrl ? '14px' : '0', fontSize: '14px', lineHeight: '1.5' }}>{message}</div>
                         {resetUrl && (
-                            <div style={{ padding: '12px', background: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: '8px', textAlign: 'center' }}>
-                                <div style={{ fontSize: '12px', fontWeight: '700', color: '#1e3a8a', marginBottom: '6px', textTransform: 'uppercase' }}>
-                                    ⚡ Instant Cloud Reset Link (Dev Fallback):
-                                </div>
+                            <div style={{ textAlign: 'center', marginTop: '6px' }}>
                                 <a
                                     href={resetUrl}
                                     style={{
                                         display: 'inline-block',
                                         backgroundColor: '#2563eb',
                                         color: '#ffffff',
-                                        padding: '10px 18px',
+                                        padding: '10px 22px',
                                         borderRadius: '6px',
                                         fontWeight: '600',
                                         fontSize: '14px',

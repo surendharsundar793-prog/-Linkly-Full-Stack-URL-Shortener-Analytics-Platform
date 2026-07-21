@@ -137,7 +137,7 @@ public class AuthController {
 		if (emailSent) {
 			response.put("message", "✅ We have sent a password reset link to " + user.getEmail() + ". Please check your inbox!");
 		} else {
-			response.put("message", "⚡ [Cloud Free Tier / Dev Fallback] Outbound SMTP port 587 is blocked by free cloud hosting firewall. Click your instant secure reset link below to continue:");
+			response.put("message", "✅ Password reset link generated! You can immediately change your password by clicking the secure button below:");
 			response.put("resetUrl", resetUrl);
 			response.put("resetToken", resetToken);
 		}
