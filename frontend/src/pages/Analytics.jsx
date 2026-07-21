@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import api from '../services/api';
+import api, { BACKEND_ROOT_URL } from '../services/api';
 import Layout from '../components/Layout';
 import '../styles/dashboard.css';
 import '../styles/analytics.css';
@@ -27,6 +27,7 @@ const getDomainName = (url) => {
 
 const Analytics = () => {
   const [urls, setUrls] = useState([]);
+  const shortDomainDisplay = BACKEND_ROOT_URL.replace(/^https?:\/\//, '');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
@@ -74,7 +75,7 @@ const Analytics = () => {
 
   // Copy Short URL
   const handleCopy = (shortUrl, id) => {
-    const cleanRedirectUrl = `http://localhost:8080/${shortUrl}`;
+    const cleanRedirectUrl = `${BACKEND_ROOT_URL}/${shortUrl}`;
     navigator.clipboard.writeText(cleanRedirectUrl);
     setCopiedId(id);
     setTimeout(() => setCopiedId(null), 2000);
@@ -234,7 +235,7 @@ const Analytics = () => {
                 <span style={{ fontSize: '14px', fontWeight: '400', color: '#64748b', marginLeft: '6px' }}>clicks</span>
               </div>
               <div className="stat-subtitle" title={mostClickedUrl ? `/${mostClickedUrl.shortUrl}` : 'N/A'}>
-                {mostClickedUrl ? `localhost:8080/${mostClickedUrl.shortUrl}` : 'No clicks yet'}
+                {mostClickedUrl ? `${shortDomainDisplay}/${mostClickedUrl.shortUrl}` : 'No clicks yet'}
               </div>
             </div>
           </section>
@@ -249,13 +250,13 @@ const Analytics = () => {
               <div className="spotlight-body">
                 <div className="spotlight-info">
                   <a
-                    href={`http://localhost:8080/${mostClickedUrl.shortUrl}`}
+                    href={`${BACKEND_ROOT_URL}/${mostClickedUrl.shortUrl}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="short-url-link"
                     style={{ fontSize: '18px', fontWeight: '800' }}
                   >
-                    localhost:8080/{mostClickedUrl.shortUrl}
+                    {shortDomainDisplay}/{mostClickedUrl.shortUrl}
                   </a>
                 </div>
                 <div className="spotlight-stats">
@@ -340,12 +341,12 @@ const Analytics = () => {
                     {/* Clean Short Link Row */}
                     <div className="link-card-short-row">
                       <a
-                        href={`http://localhost:8080/${urlItem.shortUrl}`}
+                        href={`${BACKEND_ROOT_URL}/${urlItem.shortUrl}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="link-card-short-url"
                       >
-                        localhost:8080/{urlItem.shortUrl}
+                        {shortDomainDisplay}/{urlItem.shortUrl}
                       </a>
                       <button
                         type="button"
@@ -391,7 +392,7 @@ const Analytics = () => {
             <form onSubmit={handleUpdateUrl}>
               <div style={{ marginBottom: '12px' }}>
                 <span style={{ fontSize: '13px', color: '#64748b' }}>
-                  Clean Short Link: <strong>localhost:8080/{editingItem.shortUrl}</strong>
+                  Clean Short Link: <strong>{shortDomainDisplay}/{editingItem.shortUrl}</strong>
                 </span>
               </div>
               <div>

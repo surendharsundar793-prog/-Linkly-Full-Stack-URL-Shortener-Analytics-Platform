@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import api from '../services/api';
+import api, { BACKEND_ROOT_URL } from '../services/api';
 import Layout from '../components/Layout';
 import '../styles/dashboard.css';
 import '../styles/history.css';
@@ -27,6 +27,7 @@ const getDomainName = (url) => {
 
 const History = () => {
   const [urls, setUrls] = useState([]);
+  const shortDomainDisplay = BACKEND_ROOT_URL.replace(/^https?:\/\//, '');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -153,7 +154,7 @@ const History = () => {
 
   // Copy Short URL to Clipboard
   const handleCopy = (shortUrl, id) => {
-    const fullRedirectUrl = `http://localhost:8080/${shortUrl}`;
+    const fullRedirectUrl = `${BACKEND_ROOT_URL}/${shortUrl}`;
     navigator.clipboard.writeText(fullRedirectUrl);
     setCopiedId(id);
     setTimeout(() => setCopiedId(null), 2000);
@@ -373,12 +374,12 @@ const History = () => {
                     {/* Clean Short Link Row */}
                     <div className="link-card-short-row">
                       <a
-                        href={`http://localhost:8080/${urlItem.shortUrl}`}
+                        href={`${BACKEND_ROOT_URL}/${urlItem.shortUrl}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="link-card-short-url"
                       >
-                        localhost:8080/{urlItem.shortUrl}
+                        {shortDomainDisplay}/{urlItem.shortUrl}
                       </a>
                       <button
                         type="button"
@@ -471,7 +472,7 @@ const History = () => {
             <form onSubmit={handleUpdateUrl}>
               <div style={{ marginBottom: '12px' }}>
                 <span style={{ fontSize: '13px', color: '#64748b' }}>
-                  Clean Short Link: <strong>localhost:8080/{editingItem.shortUrl}</strong>
+                  Clean Short Link: <strong>{shortDomainDisplay}/{editingItem.shortUrl}</strong>
                 </span>
               </div>
               <div>

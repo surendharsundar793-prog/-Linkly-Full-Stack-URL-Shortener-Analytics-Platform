@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import api from '../services/api';
+import api, { BACKEND_ROOT_URL } from '../services/api';
 import Layout from '../components/Layout';
 import '../styles/dashboard.css';
 
@@ -26,6 +26,7 @@ const getDomainName = (url) => {
 
 const Dashboard = () => {
   const [urls, setUrls] = useState([]);
+  const shortDomainDisplay = BACKEND_ROOT_URL.replace(/^https?:\/\//, '');
   const [originalUrl, setOriginalUrl] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
@@ -144,7 +145,7 @@ const Dashboard = () => {
 
   // Copy Clean Bitly-style Short URL to Clipboard
   const handleCopy = (shortUrl, id) => {
-    const cleanRedirectUrl = `http://localhost:8080/${shortUrl}`;
+    const cleanRedirectUrl = `${BACKEND_ROOT_URL}/${shortUrl}`;
     navigator.clipboard.writeText(cleanRedirectUrl);
     setCopiedId(id);
     setTimeout(() => setCopiedId(null), 2000);
@@ -182,7 +183,7 @@ const Dashboard = () => {
         </div>
 
         <div className="domain-badge">
-          Domain: <span>localhost:8080 🔒</span>
+          Domain: <span>{shortDomainDisplay} 🔒</span>
         </div>
 
         <form onSubmit={handleCreateUrl}>
@@ -305,12 +306,12 @@ const Dashboard = () => {
                   {/* Clean Short Link Row */}
                   <div className="link-card-short-row">
                     <a
-                      href={`http://localhost:8080/${urlItem.shortUrl}`}
+                      href={`${BACKEND_ROOT_URL}/${urlItem.shortUrl}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="link-card-short-url"
                     >
-                      localhost:8080/{urlItem.shortUrl}
+                      {shortDomainDisplay}/{urlItem.shortUrl}
                     </a>
                     <button
                       type="button"
@@ -357,7 +358,7 @@ const Dashboard = () => {
             <form onSubmit={handleUpdateUrl}>
               <div style={{ marginBottom: '12px' }}>
                 <span style={{ fontSize: '13px', color: '#64748b' }}>
-                  Clean Short Link: <strong>localhost:8080/{editingItem.shortUrl}</strong>
+                  Clean Short Link: <strong>{shortDomainDisplay}/{editingItem.shortUrl}</strong>
                 </span>
               </div>
               <div>

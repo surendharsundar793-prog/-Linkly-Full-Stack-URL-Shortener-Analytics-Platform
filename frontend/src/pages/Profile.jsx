@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../services/api';
 import Layout from '../components/Layout';
 import '../styles/dashboard.css';
 import '../styles/profile.css';
@@ -41,7 +42,7 @@ const Profile = () => {
     }
     setSavingUsername(true);
     try {
-      const res = await fetch('http://localhost:8080/api/v1/users/profile', {
+      const res = await fetch(`${API_BASE_URL}/users/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -79,7 +80,7 @@ const Profile = () => {
     }
     setSavingEmail(true);
     try {
-      const res = await fetch('http://localhost:8080/api/v1/users/profile', {
+      const res = await fetch(`${API_BASE_URL}/users/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -124,7 +125,7 @@ const Profile = () => {
     }
     setSavingPassword(true);
     try {
-      const res = await fetch('http://localhost:8080/api/v1/users/profile', {
+      const res = await fetch(`${API_BASE_URL}/users/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -162,7 +163,7 @@ const Profile = () => {
       const finalVerify = window.confirm('Final verification: Click OK to permanently delete your account and wipe all URL records from the database.');
       if (finalVerify) {
         try {
-          const res = await fetch('http://localhost:8080/api/v1/users/profile', {
+          const res = await fetch(`${API_BASE_URL}/users/profile`, {
             method: 'DELETE',
             headers: {
               'Authorization': `Bearer ${token}`
