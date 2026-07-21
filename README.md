@@ -25,7 +25,7 @@ url-shortener-platform/
 * **✂️ URL Shortening & Custom Aliases:** Transform long web addresses into concise, shareable short URLs with custom branding (`/createurl`).
 * **📊 Click Analytics & Chronological History:** Track performance metrics, click counts, and detailed history (`/analytics`, `/history`).
 * **🔐 Stateless Security:** Enterprise-grade JSON Web Token (JWT) registration and authentication (`/login`, `/register`).
-* **📧 Tokenized Password Recovery:** Secure recovery workflow via Gmail SMTP with 15-minute expiring UUID tokens (`/forgot-password`, `/reset-password`).
+* **📧 Tokenized Password Recovery:** Secure recovery workflow via Gmail SMTP with 5-minute expiring UUID tokens (`/forgot-password`, `/reset-password`).
 * **📱 Responsive Design System:** Custom vanilla CSS layouts with seamless media breakpoints (`<= 1024px`) and normalized vector illustrations (`#f8fafc`).
 
 ---

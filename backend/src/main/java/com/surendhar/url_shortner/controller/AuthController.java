@@ -128,7 +128,7 @@ public class AuthController {
 		User user = userOpt.get();
 		String resetToken = UUID.randomUUID().toString();
 		user.setResetToken(resetToken);
-		user.setResetTokenExpiry(LocalDateTime.now().plusMinutes(15));
+		user.setResetTokenExpiry(LocalDateTime.now().plusMinutes(5));
 		userRepository.save(user);
 
 		try {

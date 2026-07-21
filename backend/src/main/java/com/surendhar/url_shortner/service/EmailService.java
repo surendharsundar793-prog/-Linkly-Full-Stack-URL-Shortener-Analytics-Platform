@@ -36,7 +36,7 @@ public class EmailService {
 					+ "</div>"
 					+ "<h2 style=\"color: #0f172a; font-size: 20px; margin-bottom: 12px; text-align: center;\">Password Reset Request</h2>"
 					+ "<p style=\"color: #475569; font-size: 15px; line-height: 1.6; margin-bottom: 24px;\">"
-					+ "We received a request to reset your password for your Linkly account. Click the button below to set a new password. This link expires in 15 minutes."
+					+ "We received a request to reset your password for your Linkly account. Click the button below to set a new password. This link expires in 5 minutes."
 					+ "</p>"
 					+ "<div style=\"text-align: center; margin-bottom: 28px;\">"
 					+ "<a href=\"" + resetUrl + "\" style=\"background-color: #1a56db; color: #ffffff; text-decoration: none; padding: 12px 28px; border-radius: 6px; font-weight: 600; font-size: 15px; display: inline-block;\">Reset Password</a>"
