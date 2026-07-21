@@ -25,8 +25,11 @@ const ForgotPassword = () => {
         try {
             const response = await api.post('/auth/forgot-password', { email });
             setMessage(response.data.message || '✅ Password reset link has been sent to your email.');
-            if (response.data.resetUrl) {
-                setResetUrl(response.data.resetUrl);
+            if (response.data.resetToken) {
+                setResetUrl(`${window.location.origin}/reset-password?token=${response.data.resetToken}`);
+            } else if (response.data.resetUrl) {
+                const cleanUrl = response.data.resetUrl.replace(/http:\/\/localhost:5173|http:\/\/127\.0\.0\.1:5173/g, window.location.origin);
+                setResetUrl(cleanUrl);
             }
         } catch (err) {
             setError(

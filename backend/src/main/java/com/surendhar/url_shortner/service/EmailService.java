@@ -15,7 +15,7 @@ public class EmailService {
 	@Autowired(required = false)
 	private JavaMailSender mailSender;
 
-	@Value("${app.frontend.url:http://localhost:5173}")
+	@Value("${APP_FRONTEND_URL:${app.frontend.url:https://linkly-app.vercel.app}}")
 	private String frontendUrl;
 
 	public String getFrontendUrl() {

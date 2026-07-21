@@ -139,6 +139,7 @@ public class AuthController {
 		} else {
 			response.put("message", "⚡ [Cloud Free Tier / Dev Fallback] Outbound SMTP port 587 is blocked by free cloud hosting firewall. Click your instant secure reset link below to continue:");
 			response.put("resetUrl", resetUrl);
+			response.put("resetToken", resetToken);
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
