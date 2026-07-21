@@ -1,0 +1,262 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.register-page-container {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    background: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Top Left Brand Logo */
+.register-top-logo {
+    position: absolute;
+    top: 32px;
+    left: 48px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 10;
+    text-decoration: none;
+}
+
+.register-top-logo img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.register-top-logo-text {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1a56db; /* Linkly primary blue */
+    letter-spacing: -0.5px;
+}
+
+/* Left Half: Register Form Column */
+.register-left-half {
+    flex: 1.2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 48px;
+    background: #ffffff;
+    position: relative;
+}
+
+.register-form-inner {
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+}
+
+.register-headline {
+    font-size: 32px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.register-subheadline {
+    font-size: 14px;
+    color: #334155;
+    margin-bottom: 24px;
+}
+
+.register-subheadline a {
+    color: #1a56db;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-subheadline a:hover {
+    text-decoration: underline;
+}
+
+/* Form Inputs */
+.input-group {
+    margin-bottom: 16px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    outline: none;
+    color: #0f172a;
+    background: #ffffff;
+    transition: all 0.2s ease;
+}
+
+.input-group input:focus {
+    border-color: #1a56db;
+    box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.15);
+}
+
+/* Password Eye Toggle Wrapper */
+.password-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-input-wrapper input {
+    padding-right: 44px !important;
+}
+
+.password-toggle-btn {
+    position: absolute;
+    right: 12px;
+    background: transparent;
+    border: none;
+    color: #64748b;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border-radius: 4px;
+    transition: color 0.2s ease;
+}
+
+.password-toggle-btn:hover {
+    color: #0f172a;
+}
+
+/* Main Register Submit Button */
+.bitly-register-submit-btn {
+    width: 100%;
+    padding: 13px;
+    background: #1a56db;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    margin-top: 10px;
+    margin-bottom: 16px;
+}
+
+.bitly-register-submit-btn:hover {
+    background: #1e40af;
+}
+
+.bitly-register-submit-btn:disabled {
+    background: #93c5fd;
+    cursor: not-allowed;
+}
+
+/* Legal Terms Footer */
+.register-legal-footer {
+    font-size: 11px;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+.register-legal-footer a {
+    color: #334155;
+    text-decoration: underline;
+}
+
+/* Alerts */
+.error-alert {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+    padding: 12px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.success-alert {
+    background: #ecfdf5;
+    border: 1px solid #6ee7b7;
+    color: #047857;
+    padding: 12px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-bottom: 20px;
+    text-align: left;
+    font-weight: 600;
+}
+
+/* Right Half: Hero Banner Column */
+.register-right-half {
+    flex: 1;
+    min-height: 100vh;
+    background: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 48px;
+    text-align: center;
+}
+
+.register-hero-img-wrapper {
+    max-width: 420px;
+    width: 100%;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-hero-img-wrapper img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-height: 380px;
+}
+
+.register-hero-caption {
+    font-size: 26px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.3px;
+    line-height: 1.3;
+    max-width: 440px;
+}
+
+/* Responsive queries: Hide image section below 1024px */
+@media (max-width: 1024px) {
+    .register-right-half {
+        display: none !important;
+    }
+
+    .register-left-half {
+        flex: 1;
+        width: 100%;
+        min-height: 100vh;
+        padding: 80px 24px 40px;
+        justify-content: center;
+    }
+
+    .register-top-logo {
+        position: absolute;
+        top: 24px;
+        left: 24px;
+        margin-bottom: 0;
+    }
+}

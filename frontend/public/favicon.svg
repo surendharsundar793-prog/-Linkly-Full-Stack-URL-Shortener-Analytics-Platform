@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="linklyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="50%" stop-color="#4f46e5" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </linearGradient>
+    <linearGradient id="linkHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+      <stop offset="100%" stop-color="#e0e7ff" stop-opacity="0.9" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#1e1b4b" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- Background Icon Badge -->
+  <rect x="32" y="32" width="448" height="448" rx="120" ry="120" fill="url(#linklyGrad)" filter="url(#shadow)" />
+
+  <!-- Stylized Interlocking Link / Letter L Vector -->
+  <g transform="translate(256, 256) rotate(-15) translate(-256, -256)">
+    <!-- Top-Right Link Loop -->
+    <path d="M 280 150 L 330 150 C 379.7 150 420 190.3 420 240 C 420 289.7 379.7 330 330 330 L 290 330" 
+          fill="none" stroke="url(#linkHighlight)" stroke-width="52" stroke-linecap="round" stroke-linejoin="round" />
+    <!-- Bottom-Left Link Loop forming L base -->
+    <path d="M 232 362 L 182 362 C 132.3 362 92 321.7 92 272 C 92 222.3 132.3 182 182 182 L 222 182" 
+          fill="none" stroke="url(#linkHighlight)" stroke-width="52" stroke-linecap="round" stroke-linejoin="round" />
+    <!-- Center Connecting Bar -->
+    <line x1="185" y1="272" x2="327" y2="240" stroke="#ffffff" stroke-width="52" stroke-linecap="round" />
+  </g>
+
+  <!-- Accent Dot/Sphere for L flare -->
+  <circle cx="368" cy="368" r="32" fill="#38bdf8" />
+</svg>

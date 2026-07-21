@@ -1,0 +1,277 @@
+.landing-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f8fafc;
+  color: #0f172a;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Header Navbar */
+.landing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 5%;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.landing-logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+.landing-nav-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.btn-signin {
+  color: #334155;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.btn-signin:hover {
+  color: #1a56db;
+  background: #f1f5f9;
+}
+
+.btn-signup {
+  background: #1a56db;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.6rem 1.3rem;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.btn-signup:hover {
+  background: #1e40af;
+}
+
+/* Hero Section */
+.landing-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 5rem 5% 4rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.landing-badge {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1a56db;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.landing-title {
+  font-size: 3.4rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  color: #0f172a;
+}
+
+.landing-title span {
+  color: #1a56db;
+}
+
+.landing-subtitle {
+  font-size: 1.15rem;
+  color: #64748b;
+  max-width: 700px;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+/* Shortener Box */
+.landing-shortener-box {
+  width: 100%;
+  max-width: 760px;
+  background: #ffffff;
+  padding: 18px;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.2rem;
+}
+
+.landing-form {
+  display: flex;
+  gap: 0.8rem;
+  width: 100%;
+  align-items: stretch;
+}
+
+.landing-input {
+  flex: 1 1 100%;
+  width: 100%;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  padding: 1.1rem 1.4rem;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  color: #0f172a;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.landing-input:focus {
+  border-color: #1a56db;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.15);
+}
+
+.landing-btn-shorten {
+  flex: 0 0 auto;
+  background: #1a56db;
+  color: #ffffff;
+  border: none;
+  padding: 1.1rem 1.8rem;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.landing-btn-shorten:hover {
+  background: #1e40af;
+}
+
+.landing-notice {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+/* Features Cards */
+.landing-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 2rem 5% 5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.feature-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 32px 28px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
+  border-color: #cbd5e1;
+}
+
+.feature-icon {
+  font-size: 2.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.feature-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: #0f172a;
+}
+
+.feature-card p {
+  color: #64748b;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Comprehensive Responsive Rules across All Devices */
+@media (max-width: 1024px) {
+  .landing-title {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .landing-title {
+    font-size: 2.3rem;
+  }
+  
+  .landing-form {
+    flex-direction: column;
+  }
+  
+  .landing-btn-shorten {
+    width: 100%;
+  }
+
+  .landing-main {
+    padding: 3.5rem 5% 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .landing-header {
+    padding: 1rem 4%;
+  }
+
+  .landing-logo {
+    font-size: 1.2rem;
+  }
+
+  .btn-signin, .btn-signup {
+    padding: 0.45rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .landing-title {
+    font-size: 1.85rem;
+  }
+
+  .landing-subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .landing-shortener-box {
+    padding: 14px;
+  }
+
+  .landing-input {
+    padding: 0.9rem 1.1rem;
+    font-size: 0.95rem;
+  }
+
+  .feature-card {
+    padding: 24px 20px;
+  }
+}

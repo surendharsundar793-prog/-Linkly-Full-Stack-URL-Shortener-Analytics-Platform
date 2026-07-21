@@ -1,0 +1,40 @@
+# Root Monorepo Gitignore
+
+# Node & Frontend dependencies
+**/node_modules/
+**/dist/
+**/dist-ssr/
+*.local
+
+# Java & Maven build outputs
+**/target/
+**/.mvn/wrapper/maven-wrapper.jar
+
+# IDE & Editor files
+**/.vscode/
+**/.idea/
+**/*.iml
+**/*.iws
+**/*.ipr
+**/.classpath
+**/.project
+**/.settings/
+**/.sts4-cache/
+**/*.suo
+**/*.ntvs*
+**/*.njsproj
+**/*.sln
+**/*.sw?
+
+# OS & Logs
+*.log
+**/*.log
+**/.DS_Store
+Thumbs.db
+
+# Secrets & Environment variables
+**/.env
+**/.env.*
+!**/.env.example
+**/application-secret.properties
+**/application-local.properties
