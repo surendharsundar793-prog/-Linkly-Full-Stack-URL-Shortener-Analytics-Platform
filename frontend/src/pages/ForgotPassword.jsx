@@ -7,12 +7,14 @@ const ForgotPassword = () => {
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
+    const [resetUrl, setResetUrl] = useState('');
     const [error, setError] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
         setMessage('');
+        setResetUrl('');
 
         if (!email) {
             setError('Please enter your registered email address.');
@@ -23,6 +25,9 @@ const ForgotPassword = () => {
         try {
             const response = await api.post('/auth/forgot-password', { email });
             setMessage(response.data.message || '✅ Password reset link has been sent to your email.');
+            if (response.data.resetUrl) {
+                setResetUrl(response.data.resetUrl);
+            }
         } catch (err) {
             setError(
                 err.response?.data?.message || '❌ Could not connect to server or send email right now.'
@@ -47,7 +52,34 @@ const ForgotPassword = () => {
                 </p>
 
                 {error && <div className="forgot-error-alert">{error}</div>}
-                {message && <div className="forgot-success-alert">{message}</div>}
+                {message && (
+                    <div className="forgot-success-alert" style={{ wordBreak: 'break-word', textAlign: 'left' }}>
+                        <div style={{ marginBottom: resetUrl ? '12px' : '0' }}>{message}</div>
+                        {resetUrl && (
+                            <div style={{ padding: '12px', background: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: '8px', textAlign: 'center' }}>
+                                <div style={{ fontSize: '12px', fontWeight: '700', color: '#1e3a8a', marginBottom: '6px', textTransform: 'uppercase' }}>
+                                    ⚡ Instant Cloud Reset Link (Dev Fallback):
+                                </div>
+                                <a
+                                    href={resetUrl}
+                                    style={{
+                                        display: 'inline-block',
+                                        backgroundColor: '#2563eb',
+                                        color: '#ffffff',
+                                        padding: '10px 18px',
+                                        borderRadius: '6px',
+                                        fontWeight: '600',
+                                        fontSize: '14px',
+                                        textDecoration: 'none',
+                                        boxShadow: '0 2px 4px rgba(37, 99, 235, 0.2)'
+                                    }}
+                                >
+                                    Proceed to Reset Password &rarr;
+                                </a>
+                            </div>
+                        )}
+                    </div>
+                )}
 
                 <form onSubmit={handleSubmit}>
                     <div className="forgot-input-group">

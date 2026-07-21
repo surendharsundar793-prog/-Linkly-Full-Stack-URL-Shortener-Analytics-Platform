@@ -131,14 +131,16 @@ public class AuthController {
 		user.setResetTokenExpiry(LocalDateTime.now().plusMinutes(5));
 		userRepository.save(user);
 
-		try {
-			emailService.sendPasswordResetEmail(user.getEmail(), resetToken);
+		boolean emailSent = emailService.sendPasswordResetEmail(user.getEmail(), resetToken);
+		String resetUrl = emailService.getFrontendUrl() + "/reset-password?token=" + resetToken;
+
+		if (emailSent) {
 			response.put("message", "✅ We have sent a password reset link to " + user.getEmail() + ". Please check your inbox!");
-			return ResponseEntity.status(HttpStatus.OK).body(response);
-		} catch (Exception e) {
-			response.put("message", "❌ Could not send email right now. Please check SMTP settings. Error: " + e.getMessage());
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+		} else {
+			response.put("message", "⚡ [Cloud Free Tier / Dev Fallback] Outbound SMTP port 587 is blocked by free cloud hosting firewall. Click your instant secure reset link below to continue:");
+			response.put("resetUrl", resetUrl);
 		}
+		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
 
 	@PostMapping("/reset-password")

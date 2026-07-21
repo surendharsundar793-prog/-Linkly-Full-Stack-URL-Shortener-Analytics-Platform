@@ -18,11 +18,16 @@ public class EmailService {
 	@Value("${app.frontend.url:http://localhost:5173}")
 	private String frontendUrl;
 
-	public void sendPasswordResetEmail(String toEmail, String resetToken) {
+	public String getFrontendUrl() {
+		return frontendUrl;
+	}
+
+	public boolean sendPasswordResetEmail(String toEmail, String resetToken) {
+		String resetUrl = frontendUrl + "/reset-password?token=" + resetToken;
 		if (mailSender == null) {
-			System.out.println("⚠️ [WARN] JavaMailSender is not configured (mail settings missing in application.properties). Cannot send real email to: " + toEmail);
-			System.out.println("🔗 [MOCK LINK] Reset Link: " + frontendUrl + "/reset-password?token=" + resetToken);
-			return;
+			System.out.println("⚠️ [WARN] JavaMailSender is not configured. Cannot send real email to: " + toEmail);
+			System.out.println("🔗 [MOCK LINK] Reset Link: " + resetUrl);
+			return false;
 		}
 
 		try {
@@ -31,8 +36,6 @@ public class EmailService {
 
 			helper.setTo(toEmail);
 			helper.setSubject("🔒 Reset Your Linkly Password");
-
-			String resetUrl = frontendUrl + "/reset-password?token=" + resetToken;
 
 			String htmlContent = "<div style=\"font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 520px; margin: 0 auto; padding: 30px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #ffffff;\">"
 					+ "<div style=\"text-align: center; margin-bottom: 24px;\">"
@@ -58,9 +61,11 @@ public class EmailService {
 			helper.setText(htmlContent, true);
 			mailSender.send(message);
 			System.out.println("✅ Password reset email successfully sent to: " + toEmail);
-		} catch (MessagingException e) {
-			System.err.println("❌ Failed to send password reset email to " + toEmail + ": " + e.getMessage());
-			throw new RuntimeException("Failed to send email: " + e.getMessage());
+			return true;
+		} catch (Exception e) {
+			System.err.println("⚠️ [DEV / FREE CLOUD MODE] Could not send real SMTP email (port 587 blocked on free cloud servers or timeout): " + e.getMessage());
+			System.out.println("🔗 [MOCK LINK] Reset Link: " + resetUrl);
+			return false;
 		}
 	}
 }
