@@ -71,8 +71,14 @@ public class AuthController {
 		);
 		userRepository.save(user);
 
-		UserDetails userDetails = userDetailsService.loadUserByUsername(user.getEmail());
-		String token = jwtService.generateToken(userDetails);
+		// Generate JWT directly from the saved user — avoids a second DB round trip
+		String token = jwtService.generateToken(
+				org.springframework.security.core.userdetails.User
+						.withUsername(user.getEmail())
+						.password(user.getPassword())
+						.authorities(user.getRole())
+						.build()
+		);
 
 		AuthResponse response = new AuthResponse(
 				token,
@@ -88,6 +94,15 @@ public class AuthController {
 
 	@PostMapping("/login")
 	public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest request) {
+		// Load the user first so we have access to their details for the JWT
+		User user = userRepository.findByEmail(request.getEmail())
+				.orElse(null);
+
+		if (user == null) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+					.body(new AuthResponse(null, null, null, null, null, "Invalid email or password"));
+		}
+
 		try {
 			authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
@@ -97,11 +112,14 @@ public class AuthController {
 					.body(new AuthResponse(null, null, null, null, null, "Invalid email or password"));
 		}
 
-		User user = userRepository.findByEmail(request.getEmail())
-				.orElseThrow(() -> new RuntimeException("User not found"));
-
-		UserDetails userDetails = userDetailsService.loadUserByUsername(user.getEmail());
-		String token = jwtService.generateToken(userDetails);
+		// Generate JWT directly from user — no second DB call needed
+		String token = jwtService.generateToken(
+				org.springframework.security.core.userdetails.User
+						.withUsername(user.getEmail())
+						.password(user.getPassword())
+						.authorities(user.getRole())
+						.build()
+		);
 
 		AuthResponse response = new AuthResponse(
 				token,

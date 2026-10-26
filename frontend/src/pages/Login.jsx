@@ -36,7 +36,9 @@ const Login = () => {
         setError('❌ Authentication failed. No token received.');
       }
     } catch (err) {
-      if (err.response && err.response.data && err.response.data.message) {
+      if (err.code === 'ECONNABORTED') {
+        setError('⏱️ Server is taking too long to respond. This may be a cold start — please try again in a moment.');
+      } else if (err.response && err.response.data && err.response.data.message) {
         setError(err.response.data.message);
       } else {
         setError('❌ Invalid email or password. Please try again.');

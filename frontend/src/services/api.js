@@ -4,7 +4,8 @@ export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localho
 export const BACKEND_ROOT_URL = API_BASE_URL.replace(/\/api\/v1\/?$/, "");
 
 const api = axios.create({
-    baseURL: API_BASE_URL
+    baseURL: API_BASE_URL,
+    timeout: 15000, // 15 second timeout — fails fast instead of hanging indefinitely
 });
 
 // Request Interceptor: Automatically attach JWT token to every API request

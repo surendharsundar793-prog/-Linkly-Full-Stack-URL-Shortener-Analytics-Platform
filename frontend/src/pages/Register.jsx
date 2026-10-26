@@ -43,10 +43,12 @@ const Register = () => {
         }, 1500);
       }
     } catch (err) {
-      if (err.response && err.response.data && err.response.data.message) {
+      if (err.code === 'ECONNABORTED') {
+        setError('⏱️ Server is taking too long to respond. This may be a cold start — please try again in a moment.');
+      } else if (err.response && err.response.data && err.response.data.message) {
         setError(err.response.data.message);
       } else {
-        setError("❌ Registration failed. Please check backend server.");
+        setError('❌ Registration failed. Please check backend server.');
       }
     } finally {
       setLoading(false);

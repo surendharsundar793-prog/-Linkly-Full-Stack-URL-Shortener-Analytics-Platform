@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: linkly-postgres
+    environment:
+      POSTGRES_USER: linkly_user
+      POSTGRES_PASSWORD: linkly_password
+      POSTGRES_DB: linkly_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+    container_name: linkly-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/linkly_db
+      - SPRING_DATASOURCE_USERNAME=linkly_user
+      - SPRING_DATASOURCE_PASSWORD=linkly_password
+      - APP_FRONTEND_URL=http://localhost:80
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: linkly-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
